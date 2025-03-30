@@ -117,15 +117,3 @@ pulumi destroy
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-```
-
-This README provides a comprehensive guide for setting up a static website on AWS using Pulumi. It includes:
-1. Prerequisites and setup instructions
-2. Project structure
-3. Deployment steps
-4. Configuration options
-5. Clean-up instructions
-6. Additional resources
-
-You may want to customize the content based on your specific project requirements or add more detailed instructions for specific configurations.
