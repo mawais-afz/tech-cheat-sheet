@@ -18,22 +18,71 @@ This project demonstrates how to deploy a static website to AWS using Pulumi, co
     pulumi new static-website-aws-typescript
     ```
 
+2. Create a new folder for the frontend:
+
+    ```bash
+    mkdir frontend && cd frontend
+    ```
+
+3. Create a new Next.js project with default settings:
+
+    ```bash
+    npx create-next-app@latest .
+    ```
+
+4. Update the Pulumi Stack Settings:
+
+    Update config in Pulumi.dev.yaml from `./www` to `./frontend/out`:
+
+    ```txt
+    tech-cheat-sheet:path: ./frontend/out
+    ```
+
+    Update path in index.ts from `./www` to `./frontend/out`:
+
+    ```txt
+    const path = config.get("path") || "./frontend/out";
+    ```
+
+    Remove the `www` folder from the project.
+
 ## Project Structure
 
     ```
     tech-cheat-sheet/
+    ├── frontend/
+    │   ├── .next/
+    │   ├── app/
+    │   ├── components/
+    │   ├── out/
+    │   ├── public/
+    │   ├── styles/
+    │   ├── tailwind.config.js
+    │   ├── tsconfig.json
+    │   ├── next.config.mjs
+    │   ├── postcss.config.mjs
+    │   ├── tailwind.config.js
+    │   ├── tsconfig.json
     ├── Pulumi.yaml
     ├── Pulumi.dev.yaml
     ├── index.ts
     ├── package.json
-    └── www/           # Your static website files go here
-        └── index.html
-        └── error.html
     ```
+
+## Build the Frontend
+
+Run the following commands to build the frontend:
+
+```bash
+cd frontend
+npm run build
+```
 
 ## Deployment
 
 1. Deploy the infrastructure:
+
+    Run the following command to deploy the infrastructure:
 
     ```bash
     pulumi up
