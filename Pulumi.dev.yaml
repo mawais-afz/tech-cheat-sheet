@@ -1,0 +1,5 @@
+config:
+  aws:region: us-east-1
+  tech-cheat-sheet:errorDocument: error.html
+  tech-cheat-sheet:indexDocument: index.html
+  tech-cheat-sheet:path: ./www
