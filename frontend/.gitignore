@@ -16,7 +16,7 @@
 # next.js build and export output
 /.next/
 /out/
-
+*/dist/
 # production
 /build
 

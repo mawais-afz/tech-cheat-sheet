@@ -1,4 +1,4 @@
-# Static Website Hosting on AWS with Pulumi
+# From Code to Cloud: Deploy Your Static Website with Pulumi
 
 This project demonstrates how to deploy a static website to AWS using Pulumi, configuring S3 for hosting and CloudFront for content delivery.
 
@@ -11,40 +11,49 @@ This project demonstrates how to deploy a static website to AWS using Pulumi, co
 
 ## Getting Started
 
-1. Create a new Pulumi project:
+1. Clone this repository:
 
     ```bash
-    mkdir tech-cheat-sheet && cd tech-cheat-sheet
-    pulumi new static-website-aws-typescript
+    git clone https://github.com/yourusername/tech-cheat-sheet.git
+    cd tech-cheat-sheet
     ```
 
-2. Create a new folder for the frontend:
+2. Install Pulumi dependencies:
 
     ```bash
-    mkdir frontend && cd frontend
+    npm install
     ```
 
-3. Create a new Next.js project with default settings:
+3. Set up the frontend:
 
     ```bash
-    npx create-next-app@latest .
+    cd frontend
+    npm install
     ```
 
-4. Update the Pulumi Stack Settings:
+4. Configure your AWS credentials:
 
-    Update config in Pulumi.dev.yaml from `./www` to `./frontend/dist`:
-
-    ```txt
-    tech-cheat-sheet:path: ./frontend/dist
+    ```bash
+    aws configure
     ```
 
-    Update path in index.ts from `./www` to `./frontend/dist`:
+5. Build the frontend:
 
-    ```txt
-    const path = config.get("path") || "./frontend/dist";
+    ```bash
+    cd frontend
+    npm run build
     ```
 
-    Remove the `www` folder from the project.
+   This will create a `dist` directory with static files.
+
+6. Deploy with Pulumi from the tech-cheat-sheet folder:
+
+    ```bash
+    cd ..
+    pulumi up
+    ```
+
+7. After deployment completes, you can access your website using the CloudFront URL provided in the output.
 
 ## Project Structure
 
@@ -68,37 +77,6 @@ This project demonstrates how to deploy a static website to AWS using Pulumi, co
     ├── index.ts
     ├── package.json
     ```
-
-## Build the Frontend
-
-Run the following commands to build the frontend:
-
-```bash
-cd frontend
-npm run build
-```
-
-## Deployment
-
-1. Deploy the infrastructure:
-
-    Run the following command to deploy the infrastructure:
-
-    ```bash
-    pulumi up
-    ```
-
-2. Once deployment is complete, Pulumi will output the CloudFront distribution URL or your custom domain where the website is accessible.
-
-## Configuration
-
-You can configure the following variables in your Pulumi config:
-
-```bash
-# Set the target AWS region
-pulumi config set aws:region us-east-1
-
-```
 
 ## Clean Up
 
