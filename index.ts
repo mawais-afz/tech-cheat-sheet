@@ -4,14 +4,19 @@ import * as synced_folder from "@pulumi/synced-folder";
 
 // Import the program's configuration settings.
 const config = new pulumi.Config();
-const path = config.get("path") || "./frontend/out";
+const path = config.get("path") || "./frontend/dist";
 const indexDocument = config.get("indexDocument") || "index.html";
 const errorDocument = config.get("errorDocument") || "error.html";
 
 // Create an S3 bucket and configure it as a website.
-const bucket = new aws.s3.BucketV2("bucket");
+const bucket = new aws.s3.BucketV2("website-bucket", {
+    bucket: "tech-cheat-sheet",
+    tags: {
+        "Environment": "dev",
+    },
+});
 
-const bucketWebsite = new aws.s3.BucketWebsiteConfigurationV2("bucketWebsite", {
+const bucketWebsite = new aws.s3.BucketWebsiteConfigurationV2("bucket-config", {
     bucket: bucket.bucket,
     indexDocument: {suffix: indexDocument},
     errorDocument: {key: errorDocument},

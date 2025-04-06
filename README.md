@@ -32,16 +32,16 @@ This project demonstrates how to deploy a static website to AWS using Pulumi, co
 
 4. Update the Pulumi Stack Settings:
 
-    Update config in Pulumi.dev.yaml from `./www` to `./frontend/out`:
+    Update config in Pulumi.dev.yaml from `./www` to `./frontend/dist`:
 
     ```txt
-    tech-cheat-sheet:path: ./frontend/out
+    tech-cheat-sheet:path: ./frontend/dist
     ```
 
-    Update path in index.ts from `./www` to `./frontend/out`:
+    Update path in index.ts from `./www` to `./frontend/dist`:
 
     ```txt
-    const path = config.get("path") || "./frontend/out";
+    const path = config.get("path") || "./frontend/dist";
     ```
 
     Remove the `www` folder from the project.
@@ -54,7 +54,7 @@ This project demonstrates how to deploy a static website to AWS using Pulumi, co
     │   ├── .next/
     │   ├── app/
     │   ├── components/
-    │   ├── out/
+    │   ├── dist/
     │   ├── public/
     │   ├── styles/
     │   ├── tailwind.config.js
